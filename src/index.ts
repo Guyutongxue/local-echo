@@ -112,14 +112,18 @@ export class LocalEchoAddon extends IoEventTarget implements ITerminalAddon {
   public async read(prompt?: string, continuationPrompt = "> ") {
     await this.writingPromise;
     return new Promise<string>((resolve, reject) => {
+      const row = this.terminal.buffer.active.cursorY;
+      const col = this.terminal.buffer.active.cursorX;
       if (typeof prompt === "undefined") {
-        const row = this.terminal.buffer.active.cursorY;
-        const col = this.terminal.buffer.active.cursorX;
         this.terminal.select(0, row, col);
         prompt = this.terminal.getSelection();
         this.terminal.clearSelection();
       } else {
-        this.terminal.write(prompt);
+        if (col > 0) {
+          this.terminal.write("\r\n" + prompt);
+        } else {
+          this.terminal.write(prompt);
+        }
       }
       this.activePrompt = {
         prompt,

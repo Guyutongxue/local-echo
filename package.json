@@ -1,6 +1,6 @@
 {
   "name": "@gytx/xterm-local-echo",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A local echo controller for xterm.js",
   "type": "module",
   "source": "./src/index.ts",

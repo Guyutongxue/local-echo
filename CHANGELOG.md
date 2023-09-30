@@ -1,5 +1,9 @@
 ## Changelog
 
+## 0.1.8
+*2023.9.30*
+- Fix: Add a newline before prompt when prompt is explicit set.
+
 ## 0.1.7
 *2022.1.15*
 - Fix: cursor position mismatch when input is called frequently.
